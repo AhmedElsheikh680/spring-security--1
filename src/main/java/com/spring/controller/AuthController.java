@@ -2,14 +2,12 @@ package com.spring.controller;
 
 
 import com.spring.model.LoginRequest;
+import com.spring.security.AccessTokenDto;
 import com.spring.security.AuthService;
 import com.spring.security.JWTResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -22,5 +20,22 @@ public class AuthController {
     public ResponseEntity<JWTResponseDto> login(@RequestBody LoginRequest loginRequest) {
        JWTResponseDto jwtResponseDto =  authService.login(loginRequest.getLogin(), loginRequest.getPassword());
         return ResponseEntity.ok(jwtResponseDto);
+    }
+
+    @PostMapping("/refresh-token")
+    public ResponseEntity<AccessTokenDto> refreshAccessToken(@RequestParam String refreshToken) {
+
+        AccessTokenDto dto = authService.refreshAccessToken(refreshToken);
+
+        return ResponseEntity.ok(dto);
+    }
+
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestParam String refreshToken) {
+
+        authService.logoutUser(refreshToken);
+
+        return ResponseEntity.ok(null);
     }
 }
