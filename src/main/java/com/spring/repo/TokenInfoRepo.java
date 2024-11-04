@@ -1,13 +1,13 @@
 package com.spring.repo;
 
-import com.spring.model.AppUser;
+import com.spring.model.TokenInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepo extends JpaRepository<AppUser, Long> {
+public interface TokenInfoRepo extends JpaRepository<TokenInfo, Long> {
 
-        Optional<AppUser> findByUserName(String userName);
+    Optional<TokenInfo> findByRefreshToken(String refreshToken);
 }

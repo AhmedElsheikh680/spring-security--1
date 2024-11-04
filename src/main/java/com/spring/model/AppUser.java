@@ -22,7 +22,12 @@ public class AppUser {
     private String fullName;
     private String userName;
     private String password;
-    @ManyToMany
+
+    public AppUser(Long id) {
+        this.id = id;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "sec_user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -30,4 +35,6 @@ public class AppUser {
     )
     @OrderColumn(name = "id")
     private Set<Role> roles = new HashSet<>();
+
+
 }
