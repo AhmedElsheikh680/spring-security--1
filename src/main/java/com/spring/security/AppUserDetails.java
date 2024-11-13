@@ -20,6 +20,13 @@ public class AppUserDetails implements UserDetails {
     private String userName;
     private String password;
     private List<GrantedAuthority> authorities = new ArrayList<>();
+    private boolean isEnabled;
+
+    private boolean isCredentialsNonExpired;
+
+    private boolean isAccountNonLocked;
+
+    private boolean isAccountNonExpired;
 
     public AppUserDetails() {
     }
@@ -58,25 +65,25 @@ public class AppUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-//        return UserDetails.super.isAccountNonExpired();
-        return true;
+        return UserDetails.super.isAccountNonExpired();
+//        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-//        return UserDetails.super.isAccountNonLocked();
-        return true;
+        return UserDetails.super.isAccountNonLocked();
+//        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-//        return UserDetails.super.isCredentialsNonExpired();
-        return true;
+        return UserDetails.super.isCredentialsNonExpired();
+//        return true;
     }
 
     @Override
     public boolean isEnabled() {
-//        return UserDetails.super.isEnabled();
-        return true;
+        return UserDetails.super.isEnabled();
+//        return true;
     }
 }

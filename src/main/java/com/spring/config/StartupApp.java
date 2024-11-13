@@ -40,9 +40,9 @@ public class StartupApp implements CommandLineRunner {
             employeeRole.add(roleService.findByName("employee"));
             userService.saveAll(
                     Arrays.asList(
-                            new AppUser(null, "Ahmed Elsheikh", "ahmed", "12345", adminRole),
-                            new AppUser(null, "Sayed Ali", "sayed", "12345",userRole),
-                            new AppUser(null, "Kamal Elsheikh", "kamal", "12345" , employeeRole)
+                            new AppUser(null, "Ahmed Elsheikh", "ahmed", "12345", adminRole, true, true, true, true),
+                            new AppUser(null, "Sayed Ali", "sayed", "12345",userRole, true, true, true, true),
+                            new AppUser(null, "Kamal Elsheikh", "kamal", "12345" , employeeRole, true, true, true, true)
 
                     )
             );

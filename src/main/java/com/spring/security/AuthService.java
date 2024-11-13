@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -43,10 +44,14 @@ public class AuthService {
         log.debug("SecurityContextHolder updated. [login={}]", login);
 
 
+// this method  createLoginToken() save token in DB
         TokenInfo tokenInfo = createLoginToken(login, userDetails.getId());
 
 
         return JWTResponseDto.builder()
+                .responseCode(HttpStatus.OK.value())
+                .responseMessage(HttpStatus.Series.SUCCESSFUL.toString())
+//                .responseMessage("SUCCESSFUL")
                 .accessToken(tokenInfo.getAccessToken())
                 .refreshToken(tokenInfo.getRefreshToken())
                 .build();

@@ -36,5 +36,13 @@ public class AppUser {
     @OrderColumn(name = "id")
     private Set<Role> roles = new HashSet<>();
 
+    private boolean isEnabled;
+
+    private boolean isCredentialsNonExpired;
+
+    private boolean isAccountNonLocked;
+
+    private boolean isAccountNonExpired;
+
 
 }
